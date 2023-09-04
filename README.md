@@ -65,7 +65,7 @@ Certainly! Here's an added section on the API's endpoints and example usage:
 
 The Mail Spam Detection Flask API provides the following endpoint for predicting whether a given text is likely spam or not:
 
-### `/predict` (POST)
+- `/predict` (POST)
 
 This endpoint accepts a JSON request containing the text data to be predicted. To use this endpoint, you should also set a request header to skip the ngrok browser warning, as ngrok may display a warning page otherwise.
 

@@ -98,7 +98,7 @@ You can use the provided test script in the `API Test/` folder, `test.py`, to ma
    cd API Test/
    ```
 
-3. Edit the script by replacing the `YourNgrokURL` and `TextTopredict`
+3. Edit the script by replacing the `YourNgrokURL` and `TextToPredict`
 4. Run the test script, specifying the text you want to predict:
 
    ```bash

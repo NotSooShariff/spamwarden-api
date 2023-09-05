@@ -1,12 +1,12 @@
 import requests
 
 data = {
-    'data': 'SMS to 32749 for collecting your cash prize of $1000'
+    'data': 'TextToPredict'
 }
 
 headers = {'ngrok-skip-browser-warning': 'true'}  
 
-response = requests.post('https://acf3-2a02-ce0-3800-883-2d31-74eb-dae5-f23.ngrok-free.app/predict', json=data, headers=headers)
+response = requests.post('YourNgrokURL.ngrok-free.app/predict', json=data, headers=headers)
 
 if response.status_code == 200:
     try:

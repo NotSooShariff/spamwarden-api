@@ -11,7 +11,7 @@ This repository contains a Flask API for mail or SMS spam detection using a mach
 The project is organized as follows:
 
 - `app.py`: The Flask application file that runs the API.
-- `Mail_Spam_Detection.ipynb`: The Jupyter Notebook containing the machine learning model development and training process.
+- `source-model.ipynb`: The Jupyter Notebook containing the machine learning model development and training process.
 - `model.pkl`: A pre-trained machine learning model for spam detection.
 - `README.md`: This readme file.
 - `requirements.txt`: A file listing the required Python packages.
@@ -118,7 +118,7 @@ Please note that you should replace `"Your text goes here. Is this a spam messag
 
 ## 🧠 Machine Learning Model Explanation
 
-The machine learning model used for mail spam detection was developed in the `Mail_Spam_Detection.ipynb` Jupyter Notebook. Here's a summary of the steps involved in the model development:
+The machine learning model used for mail spam detection was developed in the `source-model.ipynb` Jupyter Notebook. Here's a summary of the steps involved in the model development:
 
 1. **Data Cleaning**: The dataset used for training the model was loaded and cleaned. Unnecessary columns were removed, and missing values and duplicate records were handled.
 

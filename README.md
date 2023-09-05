@@ -16,7 +16,7 @@ The project is organized as follows:
 - `README.md`: This readme file.
 - `requirements.txt`: A file listing the required Python packages.
 - `vectorizer.pkl`: A pre-trained TF-IDF vectorizer for text data.
-- `API Test/`: A folder containing a test script, `test.py`, for checking if the API works or not after you have followed the steps on how to run below.
+- `testcode/`: A folder containing a test script, `test.py`, for checking if the API works or not after you have followed the steps on how to run below.
 
 ## 🚀 How to Use the Code
 
@@ -57,7 +57,7 @@ Follow these steps to set up and run the Mail Spam Detection Flask API locally:
    ```
 
    Use the URL under "Forwarding" in ngrok to make API calls. This should look something like `https://{your-ngrok-code}.ngrok-free.app/`
-8. You can test if the server is running by executing the `test.py` code I have added under the `API Test/` directory from anywhere.
+8. You can test if the server is running by executing the `test.py` code I have added under the `testcode/` directory from anywhere.
 
 Certainly! Here's an added section on the API's endpoints and example usage:
 
@@ -88,14 +88,14 @@ ngrok-skip-browser-warning: true
 
 ### Example Usage
 
-You can use the provided test script in the `API Test/` folder, `test.py`, to make requests to the API. Here's how to use it:
+You can use the provided test script in the `testcode/` folder, `test.py`, to make requests to the API. Here's how to use it:
 
 1. Ensure that the Flask API is running locally, and ngrok is set up to expose the API.
 
-2. Navigate to the `API Test/` folder in your terminal:
+2. Navigate to the `testcode/` folder in your terminal:
 
    ```bash
-   cd API Test/
+   cd testcode/
    ```
 
 3. Edit the script by replacing the `YourNgrokURL` and `TextToPredict`

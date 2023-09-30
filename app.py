@@ -7,7 +7,6 @@ from nltk.stem.porter import PorterStemmer
 
 app = Flask(__name__)
 
-# Load the TF-IDF vectorizer and the machine learning model
 vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 model = pickle.load(open('model.pkl', 'rb'))
 
@@ -18,19 +17,14 @@ ps = PorterStemmer()
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Get the text data from the request
         data = request.json['data']
 
-        # Preprocess the input text data
         preprocessed_data = transform_text(data)
 
-        # Vectorize the preprocessed data
         vectorized_data = vectorizer.transform([preprocessed_data])
 
-        # Make a prediction
         prediction = model.predict(vectorized_data)
 
-        # Return the prediction as JSON
         return jsonify({'prediction': int(prediction[0])})
 
     except Exception as e:
@@ -61,4 +55,5 @@ def transform_text(text):
     return " ".join(y)
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=False)
+

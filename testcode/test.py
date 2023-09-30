@@ -6,7 +6,7 @@ data = {
 
 headers = {'ngrok-skip-browser-warning': 'true'}  
 
-response = requests.post('YourNgrokURL.ngrok-free.app/predict', json=data, headers=headers)
+response = requests.post('http://localhost:5000/predict', json=data)
 
 if response.status_code == 200:
     try:

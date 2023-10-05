@@ -1,10 +1,8 @@
 import requests
 
 data = {
-    'data': 'TextToPredict'
-}
-
-headers = {'ngrok-skip-browser-warning': 'true'}  
+    'data': 'Your text goes here. Is this a spam message?'
+} 
 
 response = requests.post('http://localhost:5000/predict', json=data)
 

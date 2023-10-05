@@ -1,6 +1,6 @@
 # 📬 Mail/SMS Spam Detection Flask API
 
-This repository contains a Flask API for mail or SMS spam detection using a machine-learning model. The project includes pre-trained models, data preprocessing, and an API for making predictions. Below, you'll find information on how to use this code for local development, the project structure, and an explanation of the machine learning model. 
+This Docker container provides a Mail/SMS Spam Detection Flask API powered by a pre-trained machine learning model. It encapsulates all the necessary components, including the Flask server, pre-trained model, and dependencies, to make it easy for you to run the spam detection API in a containerized environment.
 
 
 ## 📦 Related Repositories
@@ -10,56 +10,43 @@ This repository contains a Flask API for mail or SMS spam detection using a mach
 
 The project is organized as follows:
 
+- `model/`: The directory containing the `source-model.ipynb` Jupyter Notebook with the machine learning model development and training process.
+- `testcode/`: A folder containing a test script, `test.py`, for using this API.
 - `app.py`: The Flask application file that runs the API.
-- `source-model.ipynb`: The Jupyter Notebook containing the machine learning model development and training process.
-- `model.pkl`: A pre-trained machine learning model for spam detection.
-- `README.md`: This readme file.
 - `requirements.txt`: A file listing the required Python packages.
 - `vectorizer.pkl`: A pre-trained TF-IDF vectorizer for text data.
-- `testcode/`: A folder containing a test script, `test.py`, for checking if the API works or not after you have followed the steps on how to run below.
+- `Dockerfile`: The Dockerfile used for containerizing this project.
 
 ## 🚀 How to Use the Code
+To use this Docker container, follow these steps:
 
-Follow these steps to set up and run the Mail Spam Detection Flask API locally:
+### Step 1: Pull the Docker Image
 
-1. Clone this repository:
+Use the following command to pull the Docker image from Docker Hub:
 
-   ```bash
-   git clone https://github.com/NotSooShariff/SpamWardenAPI.git
-   ```
+```bash
+docker pull notsooshariff/spamwarden
+```
 
-2. Navigate to the project directory:
+### Step 2: Run the Docker Container
 
-   ```bash
-   cd mail-spam-detection
-   ```
+Once the image is downloaded, you can run the Docker container using the following command:
 
-3. Install the required Python packages:
+```bash
+docker run -p 5000:5000 notsooshariff/spamwarden
+```
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+This command maps port 5000 from the container to port 5000 on your host machine. Adjust the port mapping as needed to match your desired configuration.
 
-4. Start the Flask server by running:
+### Step 3: Access the API
 
-   ```bash
-   python app.py
-   ```
+The SpamWarden API is now running inside the Docker container and accessible at the following URL:
 
-   This will start the server on `http://127.0.0.1:5000`.
+```
+http://localhost:5000
+```
 
-5. To expose the API to the web, you can use [ngrok](https://ngrok.com/). After registering for Ngrok, go to the [Setup Page](https://dashboard.ngrok.com/get-started/setup) and download and unzip the executable.
-6. Launch the executable. Once the terminal pops, Configure the auth token by using the `ngrok config add-authtoken` command. Your auth token will be displayed in the same dashboard.
-7. You can now expose your running Flask server to the internet using the command:
-
-   ```bash
-   ngrok http 5000
-   ```
-
-   Use the URL under "Forwarding" in ngrok to make API calls. This should look something like `https://{your-ngrok-code}.ngrok-free.app/`
-8. You can test if the server is running by executing the `test.py` code I have added under the `testcode/` directory from anywhere.
-
-Certainly! Here's an added section on the API's endpoints and example usage:
+You can make API requests to this URL to predict whether a given text is likely spam or not.
 
 ## 🌐 API Endpoints and Example Usage
 
@@ -67,12 +54,7 @@ The Mail Spam Detection Flask API provides the following endpoint for predicting
 
 - `/predict` (POST)
 
-This endpoint accepts a JSON request containing the text data to be predicted. To use this endpoint, you should also set a request header to skip the ngrok browser warning, as ngrok may display a warning page otherwise.
-
-**Request Header:**
-```
-ngrok-skip-browser-warning: true
-```
+This endpoint accepts a JSON request containing the text data to be predicted. 
 
 **Request Body:**
 ```json
@@ -90,7 +72,7 @@ ngrok-skip-browser-warning: true
 
 You can use the provided test script in the `testcode/` folder, `test.py`, to make requests to the API. Here's how to use it:
 
-1. Ensure that the Flask API is running locally, and ngrok is set up to expose the API.
+1. Ensure that the Docker Container is running locally, and is set up to expose the API at the desired port.
 
 2. Navigate to the `testcode/` folder in your terminal:
 
@@ -98,14 +80,33 @@ You can use the provided test script in the `testcode/` folder, `test.py`, to ma
    cd testcode/
    ```
 
-3. Edit the script by replacing the `YourNgrokURL` and `TextToPredict`
+3. Edit the script by replacing the `URL` and `TextToPredict` in the script provided
+   ```python
+   import requests
+
+    data = {
+        'data': 'Your text goes here. Is this a spam message?'
+    } 
+    
+    response = requests.post('http://localhost:5000/predict', json=data)
+    
+    if response.status_code == 200:
+        try:
+            result = response.json()
+            print('Prediction:', result['prediction'])
+        except ValueError:
+            print('Response does not contain valid JSON data.')
+    else:
+        print('Error:', response.status_code)
+    
+   ```
 4. Run the test script, specifying the text you want to predict:
 
    ```bash
    python test.py 
    ```
 
-   This script sends a POST request to the `/predict` endpoint with the provided text and the `ngrok-skip-browser-warning` header set to `true`.
+   This script sends a POST request to the `/predict` endpoint with the provided text.
 
 5. The script will display the API response, indicating whether the text is likely spam or not.
 
@@ -158,7 +159,7 @@ The `app.py` file in the root directory serves as the API for making predictions
 
 ## 🙏🏽 Acknowledgments
 
-Much of the knowledge and techniques used in this project were acquired from the CampusX YouTube channel. Their educational content played a significant role in the development of this project, and we acknowledge their valuable contributions.
+I have to acknowledge the [CampusX YouTube channel](https://www.youtube.com/@campusx-official) for much of the insights on how to make this ML Model better. And also the [Fireship YouTube Channel](https://www.youtube.com/@Fireship) for the most easy to follow along tutorials and explanations on Docker. Do check them out.
 
 ## 🫱🏾‍🫲🏽 Contributions Welcome
 

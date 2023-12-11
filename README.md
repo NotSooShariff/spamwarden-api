@@ -115,7 +115,7 @@ Example Output:
 Prediction: 0
 ```
 
-Please note that you should replace `"Your text goes here. Is this a spam message?"` with the actual text you want to predict. The script will handle the API request and response for you. Feel free to use this example to integrate the API into your own applications or scripts for spam detection.
+Please note that you should replace `"Your text goes here. Is this a spam message?"` with the actual text you want to predict. The script will handle the API request and response for you. Feel free to use this example to integrate the API into your applications or scripts for spam detection.
 
 ## 🧠 Machine Learning Model Explanation
 
